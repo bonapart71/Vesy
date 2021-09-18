@@ -1,8 +1,5 @@
 // ====== БИБЛИОТЕКИ ======================
-//test2
-//test3
-//test444
-//bbbbbb8888
+
 
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
