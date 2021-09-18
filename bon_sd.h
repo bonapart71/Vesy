@@ -85,6 +85,7 @@ void set_alarm(byte ALARM_TYPE)
   led_Sliv.off();
   led_Naliv.off();
   led_Alarm.blink();
+  sound_Alarm.blink(2000);
   close_valve(VALVE_NALIV);
   close_valve(VALVE_SLIV);
   lcd.clear();

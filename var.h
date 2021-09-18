@@ -29,6 +29,9 @@
 #define LED_SLIV 31
 #define LED_ALARM 29
 
+// Пин для звукойвой сигнализации
+#define SOUND_ALARM 41
+
 // АЦП HX711(TENZO) A0-DT, A1-SCK =========
 
 HX711 scale(A0, A1);
@@ -211,7 +214,7 @@ BonTimer timer_Proverki;
 BonTimer timer_Display;
 BonTimer timer_Menu;
 BonTimer timer_Ruchnoy_Sliv;
-BonLed led_Naliv(LED_NALIV), led_Sliv(LED_SLIV), led_Alarm(LED_ALARM);
+BonLed led_Naliv(LED_NALIV), led_Sliv(LED_SLIV), led_Alarm(LED_ALARM), sound_Alarm(SOUND_ALARM);
 
 bool Ruchnoy_Sliv = false;
 

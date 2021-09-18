@@ -43,6 +43,9 @@ void setup()
   //Инициализируем экран
   lcd.init();
   lcd.backlight();
+  
+  //Выключаем сирену
+  sound_Alarm.off();
 
   //По умолчанию начальное состояние системы - Инициализация.
   Sostoyanie_System = INIZIALIZACIYA;
@@ -121,6 +124,7 @@ void loop()
   led_Naliv.work(millis());
   led_Sliv.work(millis());
   led_Alarm.work(millis());
+  sound_Alarm.work(millis());
 
   //==========Взвешиваем===============
   set_ves();
