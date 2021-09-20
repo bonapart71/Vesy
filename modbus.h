@@ -31,7 +31,7 @@ void Modbus_Update_Registers()
 
     ModbusTempTable[4] = led_Naliv.ledStatus();
     ModbusTempTable[5] = led_Sliv.ledStatus();
-    ModbusTempTable[6] = led_Sliv.ledStatus();
+    ModbusTempTable[6] = led_Alarm.ledStatus();
 
     ModbusTempTable[7] = (int)valve_Naliv_open;
     ModbusTempTable[8] = (int)valve_Sliv_open;

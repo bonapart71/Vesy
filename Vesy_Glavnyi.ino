@@ -20,7 +20,8 @@
 
 #include "functions.h"
 #include "config_file.h"
-#include "bon_sd.h"
+#include "sd_card.h"
+#include "alarm.h"
 #include "setup.h"
 #include "init.h"
 
@@ -75,7 +76,7 @@ void setup()
     led_Sliv.off();
     led_Alarm.blink();
     SD_Log("Sliv prervan!", 0);
-    SD_Log("Ves pered slivom pri sboe:", ves_pered_Slivom_pri_sboe);
+    SD_Log("Ves pered slivom pri sboe", ves_pered_Slivom_pri_sboe);
   }
 
   //++Установка точного времени:

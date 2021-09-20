@@ -39,16 +39,16 @@ bool init_comleted()
 
         if (punkt_menu_vybran == 2)
         {
-          SD_Log("Posle sboya vybran punkt - 'Trebuetsy doliv ostatka.", 0);
-          SD_Log("Ves pered sboem:", ves_pered_Slivom_pri_sboe);
-          SD_Log("Tekushiy ves:", sred_wess_N_izmer);
+          SD_Log("Posle sboya vybran punkt - Trebuetsy doliv ostatka", 0);
+          SD_Log("Ves pered sboem", ves_pered_Slivom_pri_sboe);
+          SD_Log("Tekushiy ves", sred_wess_N_izmer);
           trebuetsy_doliv_ostatka = true;
         }
         else if (punkt_menu_vybran == 1)
         {
-          SD_Log("Posle sboya vybran punkt - 'Normalnaya rabota.", 0);
-          SD_Log("Ves pered sboem:", ves_pered_Slivom_pri_sboe);
-          SD_Log("Tekushiy ves:", sred_wess_N_izmer);
+          SD_Log("Posle sboya vybran punkt - Normalnaya rabota", 0);
+          SD_Log("Ves pered sboem", ves_pered_Slivom_pri_sboe);
+          SD_Log("Tekushiy ves", sred_wess_N_izmer);
           store_to_eeprom_long(EEPROM_VES_PERED_SLIVOM_PRI_SBOE, 0);
         }
         led_Alarm.off();

@@ -91,26 +91,29 @@ bool setup_comleted()
       {
         button_Menu_pressed = false;
         button_Menu_long_pressed = false;
-        SD_Log("Zapusheno tarirovanie.", 0);
-        SD_Log("Tekushiy ves:", sred_wess_N_izmer);
-        SD_Log("Tekushaya tara:", work_setting.tara);
+        SD_Log("Zapusheno tarirovanie", 0);
+        SD_Log("Tekushiy ves", sred_wess_N_izmer);
+        SD_Log("Tekushaya tara", work_setting.tara);
         work_setting.tara = sred_wess_N_izmer + work_setting.tara;
         store_to_eeprom_long(EEPROM_TARA, work_setting.tara);
-        SD_Log("Novaya tara:", work_setting.tara);
+        SD_Log("Novaya tara", work_setting.tara);
         delay(2000);
       }
 
       else if (punkt_menu_vybran == MENU_TO_EEPR && button_Menu_long_pressed == true)
       {
-        SD_Log("Zapusheno zagruzka nastroek iz fayla.", 0);
+        SD_Log("Zapusheno zagruzka nastroek iz fayla", 0);
 
         if (read_settings_from_file())
         {
           button_Menu_pressed = false;
           button_Menu_long_pressed = false;
-          SD_Log("Zagruzka nastroek zavershena.", 0);
+          SD_Log("Zagruzka nastroek zavershena", 0);
+		  
+		  SD_Log_All_Settings();
           //+++Печать настроек в лог!!!
-          lcd.clear();
+          
+		  lcd.clear();
           lcd.setCursor(0, 1);
           lcd.print("OK");
           delay(3000);
@@ -127,7 +130,7 @@ bool setup_comleted()
       {
         button_Menu_pressed = false;
         button_Menu_long_pressed = false;
-        SD_Log("Zapushenа pechat nastroek v fayl.", 0);
+        SD_Log("Zapushenа pechat nastroek v fayl", 0);
         save_settings_to_file();
         lcd.clear();
         lcd.setCursor(0, 1);

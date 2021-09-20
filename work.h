@@ -56,7 +56,7 @@ void work()
       {
         ves_pered_Slivom = sred_wess_N_izmer;
       }
-      trebuetsy_doliv_ostatka = false;
+      
       valve_Sliv_open = true;
       led_Sliv.blink(200);
       led_Naliv.off();
@@ -67,8 +67,14 @@ void work()
       //SD_Zapis_Wess_poslednego_naliva(round(sred_wess_N_izmer));
 
       store_to_eeprom_long(EEPROM_VES_PERED_SLIVOM_PRI_SBOE, round(sred_wess_N_izmer));
-
-      SD_Log("Klapan SLIV otkryt", sred_wess_N_izmer);
+	  if (trebuetsy_doliv_ostatka){
+		  SD_Log("Klapan SLIV otkryt. Doliv", sred_wess_N_izmer);
+	  } 
+		else{	
+			SD_Log("Klapan SLIV otkryt", sred_wess_N_izmer);
+		}
+	  
+	  trebuetsy_doliv_ostatka = false;
     }
     button_Sliv_pressed = false;
   }
@@ -100,6 +106,7 @@ void work()
     store_to_eeprom_long(EEPROM_CYCLE, cycle);
     store_to_eeprom_long(EEPROM_VES_PERED_SLIVOM_PRI_SBOE, 0);
     SD_Log("Klapan SLIV zakryt", sred_wess_N_izmer);
+    SD_Log("Ves SLIV",ves_pered_Slivom-sred_wess_N_izmer);
   }
 
   // =========================== ПРОВЕРКА НА ПРОТЕКАНИЕ ===============================================
