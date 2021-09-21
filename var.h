@@ -3,6 +3,7 @@
 //test fetch
 //test ok
 //test ok2
+//test ok3
 
 
 // пин кнопки команды НАЛИВ  (D4)
