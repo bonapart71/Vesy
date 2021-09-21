@@ -13,6 +13,7 @@ enum menu_setup_
   MENU_VYBOR_DEYSTVIYA,
   MENU_RUCHNOY_SLIV,
   MENU_TARA,
+  MENU_TIME,
   MENU_TO_EEPR,
   MENU_TO_FILE,
   MENU_EXIT
@@ -22,9 +23,10 @@ const char *const menu_setup_item[] = {
     "VYBOR DEYSTVIYA",
     "1-RUCHNOY SLIV",
     "2-TARA:",
-    "3-SETTNG TO EEPR",
-    "4-SETTNG TO FILE:",
-    "5-EXIT",
+	"3-SET TIME:"
+    "4-SETTNG TO EEPR",
+    "5-SETTNG TO FILE:",
+    "6-EXIT",
 };
 
 
@@ -99,7 +101,16 @@ bool setup_comleted()
         SD_Log("Novaya tara", work_setting.tara);
         delay(2000);
       }
-
+	  //==================Установка времени
+	  else if (punkt_menu_vybran == MENU_TIME && button_Menu_long_pressed == true)
+	  {
+		button_Menu_pressed = false;
+        button_Menu_long_pressed = false; 
+		SD_Log("Zapushena ustanovka vremeni", 0);
+		  
+	  }
+	  
+		//================ Запись из файла в EEPROM
       else if (punkt_menu_vybran == MENU_TO_EEPR && button_Menu_long_pressed == true)
       {
         SD_Log("Zapusheno zagruzka nastroek iz fayla", 0);
@@ -126,6 +137,9 @@ bool setup_comleted()
           delay(3000);
         }
       }
+	  
+	  
+	  //================ Запись из EEPROM в файл
       else if (punkt_menu_vybran == MENU_TO_FILE && button_Menu_long_pressed == true)
       {
         button_Menu_pressed = false;
