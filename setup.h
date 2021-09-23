@@ -1,6 +1,9 @@
 // Пункт меню
 uint8_t punkt_menu_vybran = 0;
 
+bool menu_time_started = false; 
+bool menu_set_parameters_started = false; 
+
 // Меню 1
 const char *const menu_init_item[] = {
     "SLIV PRERVAN",
@@ -14,6 +17,7 @@ enum menu_setup_
   MENU_RUCHNOY_SLIV,
   MENU_TARA,
   MENU_TIME,
+  MENU_PARAMETERS,
   MENU_TO_EEPR,
   MENU_TO_FILE,
   MENU_EXIT
@@ -22,11 +26,12 @@ enum menu_setup_
 const char *const menu_setup_item[] = {
     "VYBOR DEYSTVIYA",
     "1-RUCHNOY SLIV",
-    "2-TARA:",
-	"3-SET TIME:"
-    "4-SETTNG TO EEPR",
-    "5-SETTNG TO FILE:",
-    "6-EXIT",
+    "2-TARA",
+    "3-SET TIME",
+    "4-SET PARAMETERS",
+    "5-SETTNG TO EEPR",
+    "6-SETTNG TO FILE",
+    "7-EXIT",
 };
 
 
@@ -47,8 +52,19 @@ bool setup_comleted()
   }
 
   read_buttons();
-
-  if (timer_Display.timesUp() || button_Naliv_pressed || button_Sliv_pressed || button_Menu_pressed)
+  
+  if (menu_time_started){
+      
+    set_time();
+    
+  }
+  else if (menu_set_parameters_started){
+    
+    set_parameters();
+      
+  }
+  
+  else if (timer_Display.timesUp() || button_Naliv_pressed || button_Sliv_pressed || button_Menu_pressed)
   {
     if (button_Naliv_pressed)
     {
@@ -104,9 +120,21 @@ bool setup_comleted()
 	  //==================Установка времени
 	  else if (punkt_menu_vybran == MENU_TIME && button_Menu_long_pressed == true)
 	  {
-		button_Menu_pressed = false;
+        button_Menu_pressed = false;
         button_Menu_long_pressed = false; 
-		SD_Log("Zapushena ustanovka vremeni", 0);
+        SD_Log("Zapushena ustanovka vremeni", 0);
+        menu_time_started = true;
+        
+		  
+	  }
+	  //==================Установка параметров
+	  else if (punkt_menu_vybran == MENU_PARAMETERS && button_Menu_long_pressed == true)
+	  {
+        button_Menu_pressed = false;
+        button_Menu_long_pressed = false; 
+        SD_Log("Zapushena ustanovka parametrs", 0);
+        menu_set_parameters_started = true;
+        
 		  
 	  }
 	  

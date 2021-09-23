@@ -19,6 +19,8 @@
 #include "modbus.h"
 
 #include "functions.h"
+#include "set_time.h"
+#include "set_parameters.h"
 #include "config_file.h"
 #include "sd_card.h"
 #include "alarm.h"
