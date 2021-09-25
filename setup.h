@@ -1,7 +1,6 @@
 // Пункт меню
 uint8_t punkt_menu_vybran = 0;
 
-bool menu_time_started = false; 
 bool menu_set_parameters_started = false; 
 
 // Меню 1
@@ -38,7 +37,7 @@ const char *const menu_setup_item[] = {
 
 bool setup_comleted()
 {
-  // Serial.println(F("Setup started"));
+  
 
   //Если идет аварийный слив, и таймер вышел, закрываем клапан
   //Нажатая кнопка слива каждый цикл продляет таймер и он не заканчивается.
@@ -54,14 +53,12 @@ bool setup_comleted()
   read_buttons();
   
   if (menu_time_started){
-      
     set_time();
     
   }
+
   else if (menu_set_parameters_started){
-    
     set_parameters();
-      
   }
   
   else if (timer_Display.timesUp() || button_Naliv_pressed || button_Sliv_pressed || button_Menu_pressed)
@@ -124,6 +121,21 @@ bool setup_comleted()
         button_Menu_long_pressed = false; 
         SD_Log("Zapushena ustanovka vremeni", 0);
         menu_time_started = true;
+        
+        set_time_step=0;
+        
+        current_time[0]=rtc.getTime().year;
+        current_time[1]=rtc.getTime().mon;
+        current_time[2]=rtc.getTime().date;
+        current_time[3]=rtc.getTime().hour;
+        current_time[4]=rtc.getTime().min;
+
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Set Year:");
+        lcd.setCursor(0, 1);
+        lcd.print(current_time[0]);
+        return false;
         
 		  
 	  }

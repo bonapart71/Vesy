@@ -100,6 +100,12 @@ void setup()
   digitalWrite(VALVE_NALIV, LOW);
   digitalWrite(VALVE_SLIV, LOW);
 
+
+  //+++ При проблемах с тензо программа виснет без объяснений.
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(F("Check tenzo"));
+  delay(1500);
   // Установка калибровочного коэффициента
   scale.set_scale();
 
@@ -108,6 +114,18 @@ void setup()
 
   // Применяем калибровку
   scale.set_scale(work_setting.calibration_factor);
+  
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(F("Tenzo ok"));
+  delay(1500);
+  
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(rtc.getDateStr() );
+  lcd.setCursor(0, 1);
+  lcd.print(rtc.getTimeStr() );
+  delay(5000);
 
   //Система включена. Вывод в лог.
   SD_Log("Sistema vkluchena", sred_wess_N_izmer);
