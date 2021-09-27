@@ -6,7 +6,7 @@
 //test ok3
 
 
-// пин кнопки команды НАЛИВ  (D4)
+// Кнопка НАЛИВ  (D4)
 #define BUTTON_NALIV 35
 
 // Кнопка СЛИВ  (D5)
@@ -18,6 +18,7 @@
 // Клапан НАЛИВА (D8)
 //#define VALVE_NALIV 2
 #define VALVE_NALIV 25
+
 // Клапан СЛИВ   (D9)
 //#define VALVE_SLIV 3
 #define VALVE_SLIV 27
@@ -25,6 +26,7 @@
 // SD pin-CS
 #define CHIP_SELECT 10
 
+// Лампочки  ================
 //#define LED_NALIV 7
 //#define LED_SLIV 6
 //#define LED_ALARM 5
@@ -33,6 +35,7 @@
 #define LED_ALARM 29
 
 // Пин для звукойвой сигнализации
+
 #define SOUND_ALARM 41
 
 // АЦП HX711(TENZO) A0-DT, A1-SCK =========
@@ -196,18 +199,23 @@ uint8_t incomingByte;
 
 // средний вес за последние N измерений (N=max_kolichestvo_vzveshivanii)
 float sred_wess_N_izmer = 0;
+
 // сумма весов за N последних измерений (перед делением на количество измерений)
 float new_sred_wess_N_izmer = 0;
+
 // вес объекта перед сливом жидкости
 float ves_pered_Slivom;
+
 //Вес жидкости сохраненной на флешке перед сбоем эклектричества
 long ves_pered_Slivom_pri_sboe;
+
 // вес проверки???????????podumat nad nazvaniem????????????????????????
 float ves_proverki = 0;
 
 // счетчик количества взвешиваний для усреднения веса.
 int schetchik_kolichestvo_vzveshivanii = 0;
 int schetchik_proverki = 0;
+
 // счетчик количества сливов
 long cycle;
 

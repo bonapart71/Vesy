@@ -19,9 +19,11 @@
 #include "modbus.h"
 
 #include "functions.h"
+#include "config_file.h"
+
 #include "set_time.h"
 #include "set_parameters.h"
-#include "config_file.h"
+
 #include "sd_card.h"
 #include "alarm.h"
 #include "setup.h"
@@ -125,7 +127,21 @@ void setup()
   lcd.print(rtc.getDateStr() );
   lcd.setCursor(0, 1);
   lcd.print(rtc.getTimeStr() );
-  delay(5000);
+  delay(4000);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Max Naliv:");
+  lcd.setCursor(0, 1);
+  lcd.print(work_setting.max_naliv);
+  delay(4000);
+  
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Max Sliv:");
+  lcd.setCursor(0, 1);
+  lcd.print(work_setting.max_naliv);
+  delay(4000);
 
   //Система включена. Вывод в лог.
   SD_Log("Sistema vkluchena", sred_wess_N_izmer);

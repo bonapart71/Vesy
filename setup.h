@@ -1,7 +1,7 @@
 // Пункт меню
 uint8_t punkt_menu_vybran = 0;
 
-bool menu_set_parameters_started = false; 
+//bool menu_set_parameters_started = false; 
 
 // Меню 1
 const char *const menu_init_item[] = {
@@ -57,8 +57,8 @@ bool setup_comleted()
     
   }
 
-  else if (menu_set_parameters_started){
-    set_parameters();
+  else if (menu_param_started){
+    set_param();
   }
   
   else if (timer_Display.timesUp() || button_Naliv_pressed || button_Sliv_pressed || button_Menu_pressed)
@@ -122,6 +122,7 @@ bool setup_comleted()
         SD_Log("Zapushena ustanovka vremeni", 0);
         menu_time_started = true;
         
+        
         set_time_step=0;
         
         current_time[0]=rtc.getTime().year;
@@ -145,7 +146,21 @@ bool setup_comleted()
         button_Menu_pressed = false;
         button_Menu_long_pressed = false; 
         SD_Log("Zapushena ustanovka parametrs", 0);
-        menu_set_parameters_started = true;
+        menu_param_started = true;
+        
+        set_param_step=0;
+        
+        current_param[0]=work_setting.max_naliv;
+        current_param[1]=work_setting.max_sliv;
+
+
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Set Max_Naliv:");
+        lcd.setCursor(0, 1);
+        lcd.print(current_param[0]);
+        return false;
+        
         
 		  
 	  }
