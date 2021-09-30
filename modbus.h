@@ -35,6 +35,8 @@ void Modbus_Update_Registers()
 
     ModbusTempTable[7] = (int)valve_Naliv_open;
     ModbusTempTable[8] = (int)valve_Sliv_open;
+    
+    ModbusTempTable[9] = Sostoyanie_System;
 
     noInterrupts();
     for (int i = 0; i < NUMBER_OF_MODBUS_REGISTERS; i++)
