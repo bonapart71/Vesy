@@ -184,13 +184,24 @@ void work()
     lcd.print(F("Z="));
     lcd.setCursor(2, 0);
     lcd.print(ltoa_with_space(cycle, 6));
-    lcd.setCursor(9, 0);
+    lcd.setCursor(10, 0);
     if (valve_Naliv_open)
       lcd.print("NALIV");
+      
     else if (valve_Sliv_open)
+    {
       lcd.print("SLIV ");
+      lcd.setCursor(10, 1);
+      //LOG1("Slivaaem. Ves:");
+      //LOG1(ltoa_with_space(round(ves_pered_Slivom-sred_wess_N_izmer), 6));
+      lcd.print(ltoa_with_space(round(ves_pered_Slivom-sred_wess_N_izmer), 6));
+    }
     else
+    {
       lcd.print("     ");
+      lcd.setCursor(10, 1);
+      lcd.print("      ");
+    }  
 
     lcd.setCursor(0, 1);
     lcd.print(F("W="));
@@ -200,13 +211,15 @@ void work()
     lcd.print(ltoa_with_space(round(sred_wess_N_izmer), 6));
     //lcd.clrScrt();
 
+
     if (!SD_works_good)
     {
-      lcd.setCursor(9, 1);
+      lcd.setCursor(10, 1);
       lcd.print("SD_ERR");
-    } else{
-      lcd.setCursor(9, 1);
-      lcd.print("      ");
-    }
+    } 
+    //else{
+      //lcd.setCursor(9, 1);
+      //lcd.print("      ");
+    //}
   }
 }

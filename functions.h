@@ -1,6 +1,8 @@
 
 //===============Доп функции======================================
 
+
+
 //Функция, которая переводит число в строку, длиной N символов,
 #define MAX_STRING_WITH_SPACE 20
 
@@ -103,6 +105,8 @@ void set_ves()
 
   if (schetchik_kolichestvo_vzveshivanii < work_setting.kolvo_vzveshivanii)
   {
+    //LOG1("Ves");  
+    //LOG1(scale.get_units());  
     new_sred_wess_N_izmer = new_sred_wess_N_izmer + scale.get_units();
     schetchik_kolichestvo_vzveshivanii++;
   }
@@ -110,7 +114,9 @@ void set_ves()
   {
     schetchik_kolichestvo_vzveshivanii = 1;
     new_sred_wess_N_izmer = new_sred_wess_N_izmer / work_setting.kolvo_vzveshivanii;
-    sred_wess_N_izmer = 0.035274 * new_sred_wess_N_izmer - work_setting.tara;
+    
+    //sred_wess_N_izmer = 0.035274 * new_sred_wess_N_izmer - work_setting.tara;
+    sred_wess_N_izmer = new_sred_wess_N_izmer - work_setting.tara;
   };
 }
 

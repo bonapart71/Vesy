@@ -177,6 +177,8 @@ bool setup_comleted()
           SD_Log("Zagruzka nastroek zavershena", 0);
 		  
 		  SD_Log_All_Settings();
+          print_settings(work_setting);
+          
           //+++Печать настроек в лог!!!
           
 		  lcd.clear();
@@ -200,6 +202,8 @@ bool setup_comleted()
         button_Menu_pressed = false;
         button_Menu_long_pressed = false;
         SD_Log("Zapushenа pechat nastroek v fayl", 0);
+        SD_Log_All_Settings();
+        print_settings(work_setting);
         save_settings_to_file();
         lcd.clear();
         lcd.setCursor(0, 1);

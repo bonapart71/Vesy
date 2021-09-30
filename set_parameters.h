@@ -7,8 +7,8 @@ long current_param[2];
 
 long set_param_min_max[2][2]=
 {
-    {1700,3500},
-    {1600,3000}
+    {100,3500},
+    {10,3000}
 };
 
 
@@ -51,6 +51,12 @@ void set_param(){
         button_Menu_pressed=false;
         button_Menu_long_pressed=false;
         set_param_step++;
+        
+        //Защита. Что-бы вес налива не был меньше веса слива
+        if (set_param_step==1){
+           set_param_min_max[1][1] = current_param[0]-work_setting.zapas;
+        }
+        
         if (set_param_step==2){
             //LOG1("Нормальная работа");
             menu_param_started=false;
@@ -61,7 +67,10 @@ void set_param(){
 
             store_to_eeprom_long(EEPROM_MAX_NALIV, work_setting.max_naliv);
             store_to_eeprom_long(EEPROM_MAX_SLIV, work_setting.max_sliv);
+            
+            SD_Log_All_Settings();
             print_settings(work_setting);
+            //save_settings_to_file();
  
             return;
         }

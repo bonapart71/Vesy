@@ -35,6 +35,10 @@
 void setup()
 {
   Serial.begin(9600);
+  
+  //Система включена. Вывод в лог.
+  
+  
 
   //Инициализируем модбас.
   Timer1.initialize(50000);                              //  Инициализация таймера 1, период 500 мкс
@@ -44,10 +48,14 @@ void setup()
 
   //Инициализируем часы
   rtc.begin();
+  
+  
 
   //Инициализируем экран
   lcd.init();
   lcd.backlight();
+  
+  SD_Log("Sistema vkluchena",1);
   
   //Выключаем сирену
   sound_Alarm.off();
@@ -58,7 +66,10 @@ void setup()
 
   //Считываем настройки из EEPROM. Если в первой ячейке нет 11111, значит нужно идти в настройки и сохранить их в еепром из файла
   if (read_setting_from_eeprom() == 11111)
+  {
     print_settings(work_setting);
+    SD_Log_All_Settings();
+  }
   else
     Sostoyanie_System = NASTROYKA;
 
@@ -108,13 +119,17 @@ void setup()
   lcd.setCursor(0, 0);
   lcd.print(F("Check tenzo"));
   delay(1500);
+  
   // Установка калибровочного коэффициента
-  scale.set_scale();
+  
+  //scale.set_scale();
 
   //+++ Обнуляем вес тары
   //scale.tare();
 
   // Применяем калибровку
+  LOG1("Calibration");
+  LOG1(work_setting.calibration_factor);
   scale.set_scale(work_setting.calibration_factor);
   
   lcd.clear();
@@ -140,11 +155,11 @@ void setup()
   lcd.setCursor(0, 0);
   lcd.print("Max Sliv:");
   lcd.setCursor(0, 1);
-  lcd.print(work_setting.max_naliv);
+  lcd.print(work_setting.max_sliv);
   delay(4000);
 
-  //Система включена. Вывод в лог.
-  SD_Log("Sistema vkluchena", sred_wess_N_izmer);
+  //Система готова к работе. Вывод в лог.
+  SD_Log("Sistema gotova k rabote", 1);
 
   //Запускаем таймеры
   timer_Zaderzhka_Na_Uspokoenie.start(vremya_Zaderzhka_Na_Uspokoenie);
@@ -203,8 +218,8 @@ void loop()
   {
     if (timer_Proverki.timesUp())
     {
-      SD_Log("Zhdem...", sred_wess_N_izmer);
-      LOG1(F("Zhdem..."));
+      SD_Log("Zhdem reakcii...", sred_wess_N_izmer);
+      LOG1(F("Zhdem reakcii..."));
       LOGD;
     }
   }
