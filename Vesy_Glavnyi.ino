@@ -1,3 +1,5 @@
+#define VERSION "Version 1.0"
+
 // ====== БИБЛИОТЕКИ ======================
 
 
@@ -56,6 +58,13 @@ void setup()
   lcd.backlight();
   
   SD_Log("Sistema vkluchena",1);
+
+//Печатаем версию программы в лог и на экран
+  SD_Log(VERSION,1);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(VERSION);
+  delay(1500);
   
   //Выключаем сирену
   sound_Alarm.off();
