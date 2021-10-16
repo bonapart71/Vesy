@@ -23,7 +23,7 @@ void work()
 
   // ======== ПРОЦЕСС НАЛИВА ===============================================================
 
-  if (button_Naliv_pressed)
+  if (button_Naliv_pressed || avtonaliv==AVTONALIV_ON && !trebuetsy_doliv_ostatka)
   {
     // Если вес меньше чем вес "MAX-СЛИВ" и оба клапана закрыт, то можно наливать!
     if (sistema_stabilna && led_Naliv.isOn() && !valve_Sliv_open && !valve_Naliv_open)

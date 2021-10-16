@@ -131,7 +131,7 @@ struct setting_data
 setting_data new_setting;
 setting_data work_setting;
 
-// ================== СОСТОЯНИЯ СИСИЕМЫ ======================
+// ================== СОСТОЯНИЯ СИСТЕМЫ ======================
 
 enum Sostoyaniya_Sistemy_
 {
@@ -148,6 +148,18 @@ enum Sostoyaniya_Alarm_
   ALARM_ZASOR_NALIV,
   ALARM_ZASOR_SLIV,
 };
+
+// ================== АВТОНАЛИВ ======================
+
+
+enum Sostoyaniya_Avtonaliv_
+{
+  AVTONALIV_OFF,
+  AVTONALIV_ON,
+};
+
+int avtonaliv=AVTONALIV_ON;
+
 
 //================Назначенные Задержки======================================
 #define vremya_na_stabilizaciya 3000
@@ -186,7 +198,8 @@ const int max_kolichestvo_vzveshivanii = 3;
 // Минимальное количество жидкости, которое должно слиться в период времени заданный
 // в timer_Proverki константой vremya_proverki_na_ZASOR
 //++Может перевести в еепром?
-long min_ves_sliva_v_period_vremeni = 20;
+//long min_ves_sliva_v_period_vremeni = 20;
+long min_ves_sliva_v_period_vremeni = 2;
 
 // ====== ПЕРЕМЕННЫЕ ======================
 
