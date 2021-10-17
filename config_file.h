@@ -3,8 +3,10 @@ void save_settings_to_eeprom()
 {
 long temp;
   work_setting = new_setting;
+  
 //11111 -Магическое число. Если оно есть в первом адресе еепром, значит настройки были сохранены
 //Иначе - карточка новая, и первым делом нужно идти в настройки.
+
   store_to_eeprom_int(EEPROM_STATUS, 11111);
   store_to_eeprom_long(EEPROM_TARA, new_setting.tara);
   temp = round(new_setting.calibration_factor * CALIBRATION_FACTOR_MULTIPLIER);
@@ -121,7 +123,7 @@ bool parse_string(char buff[])
   return false;
 }
 
-//================================
+//=========================== ===========================
 
 //Длина буфера строки
 #define BUFF_LEN_CONFIG 150
@@ -153,7 +155,8 @@ int read_strings_from_file()
       {
         string_count++;
         if (!parse_string(buff))
-        { //Если произошла ошибка парсинга, закрываем файл, возвращаем номер строки с ошибкой (первая строка имеет индекс 1)
+        { 
+  //Если произошла ошибка парсинга, закрываем файл, возвращаем номер строки с ошибкой (первая строка имеет индекс 1)
           datafile.close();
           return string_count;
         }
@@ -187,6 +190,7 @@ int read_strings_from_file()
   LOG1(F("New settings from file:")); 	
   print_settings(new_setting);
   LOGD;
+  
   //Если все строки обработаны без ошибок, обновляем текущие параметры, записываем их ееprom
   //и возвращаем 0.
   
@@ -200,6 +204,7 @@ int read_strings_from_file()
 
 
 #define SD_alarm_led_blink_timeout 1501
+
 /*Функция инициализирует SD карту. 
 Делаем это перед каждым обращением к карточке, на случай если карта вытащена или сломалась*/
 bool SD_check(char message[])
@@ -227,8 +232,8 @@ bool SD_check(char message[])
   }
 }
 
-/*Чтение конфига из файла настроек. 
-*/
+//=========================== Чтение конфига из файла настроек ===========================
+
 bool read_settings_from_file()
 {
   int error_line;
@@ -256,7 +261,7 @@ bool read_settings_from_file()
 
 
 
-//Функция для сохранения текущих настроек на SD карту
+//=========================== Функция для сохранения текущих настроек на SD карту ===========================
 void save_settings_to_file()
 {
   if (SD_check("Save conf"))

@@ -1,15 +1,18 @@
-// Пункт меню
+//=========================== Пункт меню ===========================
+
 uint8_t punkt_menu_vybran = 0;
 
 //bool menu_set_parameters_started = false; 
 
-// Меню 1
+//=========================== Меню 1 ===========================
+
 const char *const menu_init_item[] = {
     "SLIV PRERVAN",
     "1-NORM RABOTA",
     "2-SLIV OSTATOK"};
 
-// Меню 2
+//=========================== Меню 2 ===========================
+
 enum menu_setup_
 {
   MENU_VYBOR_DEYSTVIYA,
@@ -84,7 +87,9 @@ bool setup_comleted()
       {
         button_Menu_pressed = false;
       }
-      //===========Ручной слив
+
+//=========================== Ручной слив ===========================
+
       else if (punkt_menu_vybran == MENU_RUCHNOY_SLIV)
       {
         button_Menu_pressed = false;
@@ -101,7 +106,8 @@ bool setup_comleted()
           delay(100);
         }
       }
-      //=============Тарирование
+//=========================== Тарирование ===========================
+
       else if (punkt_menu_vybran == MENU_TARA && button_Menu_long_pressed == true)
       {
         button_Menu_pressed = false;
@@ -114,7 +120,8 @@ bool setup_comleted()
         SD_Log("Novaya tara", work_setting.tara);
         delay(2000);
       }
-	  //==================Установка времени
+//=========================== Установка времени ===========================
+
 	  else if (punkt_menu_vybran == MENU_TIME && button_Menu_long_pressed == true)
 	  {
         button_Menu_pressed = false;
@@ -140,7 +147,9 @@ bool setup_comleted()
         
 		  
 	  }
-	  //==================Установка параметров
+   
+//=========================== Установка параметров ===========================
+
 	  else if (punkt_menu_vybran == MENU_PARAMETERS && button_Menu_long_pressed == true)
 	  {
         button_Menu_pressed = false;
@@ -166,7 +175,8 @@ bool setup_comleted()
 		  
 	  }
 	  
-		//================ Запись из файла в EEPROM
+//=========================== Запись из файла в EEPROM ===========================
+
       else if (punkt_menu_vybran == MENU_TO_EEPR && button_Menu_long_pressed == true)
       {
         SD_Log("Zapusheno zagruzka nastroek iz fayla", 0);
@@ -196,8 +206,8 @@ bool setup_comleted()
         }
       }
 	  
-	  
-	  //================ Запись из EEPROM в файл
+//=========================== Запись из EEPROM в файл ===========================
+
       else if (punkt_menu_vybran == MENU_TO_FILE && button_Menu_long_pressed == true)
       {
         button_Menu_pressed = false;
@@ -212,7 +222,7 @@ bool setup_comleted()
         delay(3000);
       }
 
-      //=============Выход из меню
+//=========================== Выход из меню ===========================
 
       else if (punkt_menu_vybran == MENU_EXIT)
       {

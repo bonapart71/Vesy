@@ -1,23 +1,22 @@
 bool menu_param_started = false; 
 int set_param_step=0;
 
-//Количество пунктов меню
+//=========================== Количество пунктов меню ===========================
+
 #define SET_PARAM_MAX_NUMBER 3
-
-
-
 
 long current_param[SET_PARAM_MAX_NUMBER];
 
 long set_param_min_max[3][3]=
 {
-  //Минимальная граница, макс граница, шаг
+  //Минимальная граница, макс граница, шаг (x,y,z)
     {100,3500,10},
     {10,3000,10},
     {0,1,1}
 };
 
-//Названия пунктов меню
+//=========================== Названия пунктов меню ===========================
+
 char* set_param_steps_names[]={"Max_Naliv","Max_Sliv","Avtonaliv"};
 
 void set_one_part_of_param(int i){
@@ -80,6 +79,7 @@ void set_param(){
         set_param_step++;
         
         //Защита. Что-бы вес налива не был меньше веса слива
+        
         if (set_param_step==1){
            set_param_min_max[1][1] = current_param[0]-work_setting.zapas;
         }

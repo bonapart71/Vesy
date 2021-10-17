@@ -3,7 +3,7 @@
 void SD_Log_All_Settings();
 
 
-//========Настройки отладки==========================
+//=========================== Настройки отладки ===========================
 
 #define DEBUG
 
@@ -24,10 +24,6 @@ void SD_Log_All_Settings();
 #else
 #define PRN2(x)
 #endif
-
-
-
-
 
 
 #define LOG1(x) Serial.println(x)

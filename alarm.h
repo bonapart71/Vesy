@@ -1,6 +1,7 @@
-// Действия при тревоге
-void set_alarm(byte ALARM_TYPE)
-{
+//=========================== Действия при тревоге ===========================
+
+  void set_alarm(byte ALARM_TYPE)
+  {
   timer_Proverki.startAndRepeat(vremya_povtoreniya_soobsheniya_ob_alarme);
   led_Sliv.off();
   led_Naliv.off();
