@@ -93,6 +93,9 @@ bool setup_comleted()
       else if (punkt_menu_vybran == MENU_RUCHNOY_SLIV)
       {
         button_Menu_pressed = false;
+        
+        lcd.setCursor(10, 0);
+        lcd.print(ltoa_with_space(round(sred_wess_N_izmer), 6));
         //lcd.clear();
         //Включаем таймер ручного слива. Если кнопку удерживать, каждый цикл таймер запускается заново
         timer_Ruchnoy_Sliv.start(1000);
@@ -103,6 +106,7 @@ bool setup_comleted()
           open_valve(VALVE_SLIV);
           led_Sliv.blink();
           SD_Log("Zapushen ruchnoy sliv", sred_wess_N_izmer);
+          
           delay(100);
         }
       }
