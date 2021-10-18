@@ -38,6 +38,8 @@ void open_valve(int valve)
 {
   // Установка низкого напряжения на пин "valve"
   digitalWrite(valve, HIGH);
+  if (valve==VALVE_NALIV) valve_Naliv_open=true;
+  if (valve==VALVE_SLIV)  valve_Sliv_open=true;
 
 }
 
@@ -48,6 +50,8 @@ void close_valve(int valve)
 {
   // Установка высокого напряжения на пин "valve"
   digitalWrite(valve, LOW);
+  if (valve==VALVE_NALIV) valve_Naliv_open=false;
+  if (valve==VALVE_SLIV)  valve_Sliv_open=false;
 }
 
 //======================================================================

@@ -29,7 +29,7 @@ void work()
     if (sistema_stabilna && led_Naliv.isOn() && !valve_Sliv_open && !valve_Naliv_open)
     {
       open_valve(VALVE_NALIV);
-      valve_Naliv_open = true;
+      //valve_Naliv_open = true;
       led_Naliv.blink(200);
       led_Sliv.off();
       sistema_stabilna = false;
@@ -57,7 +57,7 @@ void work()
         ves_pered_Slivom = sred_wess_N_izmer;
       }
       
-      valve_Sliv_open = true;
+      //valve_Sliv_open = true;
       led_Sliv.blink(200);
       led_Naliv.off();
       cycle++;
@@ -83,7 +83,7 @@ void work()
   if (sred_wess_N_izmer > work_setting.max_naliv && valve_Naliv_open == true)
   {
     close_valve(VALVE_NALIV);
-    valve_Naliv_open = false;
+    //valve_Naliv_open = false;
     button_Naliv_pressed = false;
     button_Sliv_pressed = false;
     sistema_stabilna = false;
@@ -96,7 +96,7 @@ void work()
   if (sred_wess_N_izmer < ves_pered_Slivom - work_setting.max_sliv && valve_Sliv_open == true)
   {
     close_valve(VALVE_SLIV);
-    valve_Sliv_open = false;
+    //valve_Sliv_open = false;
     button_Naliv_pressed = false;
     button_Sliv_pressed = false;
     sistema_stabilna = false;
