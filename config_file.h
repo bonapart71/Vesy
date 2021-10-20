@@ -212,9 +212,10 @@ bool SD_check(char message[])
 
   if (SD.begin(CHIP_SELECT))
   {
-    LOG1(F("SD card initialized at step:"));
-    LOG1(message);
-    LOGD;
+    //LOG1(F("SD card initialized at step:"));
+    //LOG1(message);
+    //LOGD;
+    
     SD_works_good=true;
     if (led_Alarm.timeout()==SD_alarm_led_blink_timeout){
       led_Alarm.off();

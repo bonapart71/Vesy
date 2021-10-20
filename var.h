@@ -137,7 +137,8 @@ setting_data work_setting;
 
 enum Sostoyaniya_Sistemy_
 {
-  INIZIALIZACIYA,
+  OTKLUCHENO,
+  INIZIALIZACIYA_DOLIV,
   NASTROYKA,
   RABOTA,
   ALARM,
@@ -159,8 +160,8 @@ enum Sostoyaniya_Avtonaliv_
   AVTONALIV_ON,
 };
 
-int avtonaliv=AVTONALIV_ON;
-
+//int avtonaliv=AVTONALIV_ON;
+int avtonaliv=AVTONALIV_OFF;
 
 //=========================== Назначенные Задержки ===========================
 
@@ -199,8 +200,8 @@ const int max_kolichestvo_vzveshivanii = 3;
 // Минимальное количество жидкости, которое должно слиться в период времени заданный
 // в timer_Proverki константой vremya_proverki_na_ZASOR
 //++Может перевести в еепром?
-//long min_ves_sliva_v_period_vremeni = 20;
-long min_ves_sliva_v_period_vremeni = 2;
+long min_ves_sliva_v_period_vremeni = 20;
+//long min_ves_sliva_v_period_vremeni = 2;
 
 //=========================== ПЕРЕМЕННЫЕ ===========================
 
@@ -246,6 +247,9 @@ bool Ruchnoy_Sliv = false;
 
 const char space = ';';
 
+//=====================Время слива===============
+unsigned long Sliv_Start_Time;
+unsigned long Sliv_Time;
 
 
 //=========================== Статутс - "система стабильна". После закрытия клапанов даем системе некоторое время успокоиться, а потом включаем систему тревог.

@@ -47,6 +47,7 @@ void work()
     if (sistema_stabilna && led_Sliv.isOn() && valve_Naliv_open == false && valve_Sliv_open == false)
     {
       open_valve(VALVE_SLIV);
+      Sliv_Start_Time=millis();
       // Присвоить значение весу "ves_pered_Slivom" значение веса "sred_wess_N_izmer"
       if (trebuetsy_doliv_ostatka)
       {
@@ -96,6 +97,14 @@ void work()
   if (sred_wess_N_izmer < ves_pered_Slivom - work_setting.max_sliv && valve_Sliv_open == true)
   {
     close_valve(VALVE_SLIV);
+
+    Sliv_Time=millis();
+    if (Sliv_Time>Sliv_Start_Time) Sliv_Time=Sliv_Time-Sliv_Start_Time;
+    else Sliv_Time=4294967295-Sliv_Start_Time+Sliv_Time;
+    Sliv_Time=Sliv_Time/1000;  
+    
+    //LOG2("Vremya sliva:",Sliv_Time );
+    
     //valve_Sliv_open = false;
     button_Naliv_pressed = false;
     button_Sliv_pressed = false;
@@ -106,7 +115,8 @@ void work()
     store_to_eeprom_long(EEPROM_CYCLE, cycle);
     store_to_eeprom_long(EEPROM_VES_PERED_SLIVOM_PRI_SBOE, 0);
     SD_Log("Klapan SLIV zakryt", sred_wess_N_izmer);
-    SD_Log("Ves SLIV",ves_pered_Slivom-sred_wess_N_izmer);
+    SD_Log("Ves SLIV:",ves_pered_Slivom-sred_wess_N_izmer);
+    SD_Log("Vremya SLIV:",Sliv_Time);
   }
 
   //=========================== ПРОВЕРКА НА ПРОТЕКАНИЕ ===========================

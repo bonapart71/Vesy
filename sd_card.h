@@ -7,10 +7,14 @@ void SD_Log(char message[], float ves)
   LOG1P(rtc.getDateStr())
   LOG1P(rtc.getTimeStr())
   LOG1P(message);
+  //LOG1P(F("Value:"));
+  LOG1P('\t');
+  LOG1P(ves);
+  LOG1P('\t');
+  LOG1P('\t');
   LOG1P(F("Cycle:"));
-  LOG1P(cycle);
-  LOG1P(F("Ves:"));
-  LOG1(ves);
+  LOG1(cycle);
+
 
   if (SD_check("SD_log"))
   {
@@ -24,10 +28,10 @@ void SD_Log(char message[], float ves)
       dataFile.print(message);
       dataFile.print(space);
       //dataFile.print(F("Cycle;"));
-      dataFile.print(cycle);
+      dataFile.println(ves);
       dataFile.print(space);
       //dataFile.print(F("Ves;"));
-      dataFile.println(ves);
+      dataFile.print(cycle);
       dataFile.close();
     }
     else
@@ -93,4 +97,3 @@ void set_date_time_from_file()
   }
 }
 */
-

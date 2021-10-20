@@ -1,4 +1,4 @@
-  #define VERSION "Version 1.01"
+  #define VERSION "Version 1.02"
 
 //=========================== БИБЛИОТЕКИ ===========================
 
@@ -72,7 +72,7 @@
 
 //=========================== По умолчанию начальное состояние системы - Инициализация ===========================
   
-  Sostoyanie_System = INIZIALIZACIYA;
+  Sostoyanie_System = INIZIALIZACIYA_DOLIV;
   //Sostoyanie_System = NASTROYKA;
 
 //=========================== Считываем настройки из EEPROM. Если в первой ячейке нет 11111, значит нужно идти в настройки и сохранить их в еепром из файла ===========================
@@ -207,7 +207,7 @@
   
 //============================Состояние ИНИЦИАЛИЗАЦИЯ==============================================  
  
-  else if (Sostoyanie_System == INIZIALIZACIYA)
+  else if (Sostoyanie_System == INIZIALIZACIYA_DOLIV)
   {
     if (init_comleted())
     {
