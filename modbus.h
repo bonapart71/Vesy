@@ -38,6 +38,8 @@ void Modbus_Update_Registers()
     
     ModbusTempTable[9] = Sostoyanie_System;
 
+    ModbusTempTable[12] = ALARM_TYPE;
+
     noInterrupts();
     for (int i = 0; i < NUMBER_OF_MODBUS_REGISTERS; i++)
         ModbusRegTable[i] = ModbusTempTable[i];

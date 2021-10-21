@@ -151,18 +151,28 @@ void work()
     if (!valve_Sliv_open && !valve_Naliv_open)
     {
       if (ves_proverki - sred_wess_N_izmer > work_setting.max_ves_utechki)
+        {
         set_alarm(ALARM_UTECHKA_SLIV);
+        ALARM_TYPE = ALARM_UTECHKA_SLIV;
+        }
       else if (sred_wess_N_izmer - ves_proverki > work_setting.max_ves_utechki)
+        {
         set_alarm(ALARM_UTECHKA_NALIV);
+        ALARM_TYPE = ALARM_UTECHKA_NALIV;
+        }
     }
     else
     {
       if (abs(ves_proverki - sred_wess_N_izmer) < min_ves_sliva_v_period_vremeni)
       {
         if (valve_Sliv_open)
+        {
           set_alarm(ALARM_ZASOR_SLIV);
+          ALARM_TYPE = ALARM_ZASOR_SLIV;
+        }
         else
           set_alarm(ALARM_ZASOR_NALIV);
+          ALARM_TYPE = ALARM_ZASOR_NALIV;
       }
       else
       {

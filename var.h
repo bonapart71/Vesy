@@ -1,10 +1,5 @@
 
 //=========================== PIN ===========================
-//test fetch
-//test ok
-//test ok2
-//test ok3
-
 
 // Кнопка НАЛИВ  (D35)
 #define BUTTON_NALIV 35
@@ -26,9 +21,6 @@
 
 //=========================== Лампочки ===========================
 
-//#define LED_NALIV 7
-//#define LED_SLIV 6
-//#define LED_ALARM 5
 #define LED_NALIV 33
 #define LED_SLIV 31
 #define LED_ALARM 29
@@ -146,6 +138,7 @@ enum Sostoyaniya_Sistemy_
 
 enum Sostoyaniya_Alarm_
 {
+  NO_ALARM,
   ALARM_UTECHKA_NALIV,
   ALARM_UTECHKA_SLIV,
   ALARM_ZASOR_NALIV,
@@ -206,32 +199,40 @@ long min_ves_sliva_v_period_vremeni = 20;
 //=========================== ПЕРЕМЕННЫЕ ===========================
 
 byte Sostoyanie_System;
-
+byte ALARM_TYPE;
 bool SD_works_good = true;
 
 //=========================== для управления из ком-порта ===========================
+
 uint8_t incomingByte;
 
 //=========================== Средний вес за последние N измерений (N=max_kolichestvo_vzveshivanii) ===========================
+
 float sred_wess_N_izmer = 0;
 
 //=========================== Сумма весов за N последних измерений (перед делением на количество измерений) ===========================
+
 float new_sred_wess_N_izmer = 0;
 
 //=========================== Вес объекта перед сливом жидкости ===========================
+
 float ves_pered_Slivom;
 
 //=========================== Вес жидкости сохраненной на флешке перед сбоем эклектричества ===========================
+
 long ves_pered_Slivom_pri_sboe;
 
 //=========================== Вес проверки???????????podumat nad nazvaniem????????????????????????===========================
+
 float ves_proverki = 0;
 
 //=========================== Счетчик количества взвешиваний для усреднения веса ===========================
+
 int schetchik_kolichestvo_vzveshivanii = 0;
 int schetchik_proverki = 0;
 
 //=========================== Счетчик количества сливов ===========================
+
 long cycle;
 
 //=========================== Таймеры-Лампочки ===========================
@@ -248,6 +249,7 @@ bool Ruchnoy_Sliv = false;
 const char space = ';';
 
 //=====================Время слива===============
+
 unsigned long Sliv_Start_Time;
 unsigned long Sliv_Time;
 
