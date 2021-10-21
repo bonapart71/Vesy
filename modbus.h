@@ -40,6 +40,14 @@ void Modbus_Update_Registers()
 
     ModbusTempTable[12] = ALARM_TYPE;
 
+    
+    temp = round(Sliv_Time);
+    ptr = (unsigned int *)&temp;
+    ModbusTempTable[14] = *ptr++;
+    ModbusTempTable[13] = *ptr;
+
+    
+
     noInterrupts();
     for (int i = 0; i < NUMBER_OF_MODBUS_REGISTERS; i++)
         ModbusRegTable[i] = ModbusTempTable[i];
