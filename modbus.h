@@ -38,14 +38,19 @@ void Modbus_Update_Registers()
     
     ModbusTempTable[9] = Sostoyanie_System;
 
-    ModbusTempTable[12] = ALARM_TYPE;
+    ModbusTempTable[10] = ALARM_TYPE;
+
+    temp = round(Sliv_Time);
+    ptr = (unsigned int *)&temp;
+    ModbusTempTable[12] = *ptr++;
+    ModbusTempTable[11] = *ptr;
 
     
-    temp = round(Sliv_Time);
+    // Наверное нужно ввести новую переменную
+    temp = round(ves_pered_Slivom-sred_wess_N_izmer);
     ptr = (unsigned int *)&temp;
     ModbusTempTable[14] = *ptr++;
     ModbusTempTable[13] = *ptr;
-
     
 
     noInterrupts();
