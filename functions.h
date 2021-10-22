@@ -50,11 +50,7 @@ void close_valve(int valve)
 {
   // Установка высокого напряжения на пин "valve"
   digitalWrite(valve, LOW);
-  if (valve==VALVE_NALIV) 
-  {
-    valve_Naliv_open=false;
-    LOG2("valve naliv - ",valve_Naliv_open);
-  }
+  if (valve==VALVE_NALIV) valve_Naliv_open=false;
   if (valve==VALVE_SLIV)  valve_Sliv_open=false;
 }
 

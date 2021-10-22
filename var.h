@@ -127,7 +127,7 @@ setting_data work_setting;
 
 //=========================== СОСТОЯНИЯ СИСТЕМЫ ===========================
 
-enum Sostoyaniya_Sistemy_
+enum Sostoyanie_Systemy_
 {
   OTKLUCHENO,
   INIZIALIZACIYA_DOLIV,
@@ -135,8 +135,10 @@ enum Sostoyaniya_Sistemy_
   RABOTA,
   ALARM,
 };
+byte Sostoyanie_Systemy;
 
-enum Sostoyaniya_Alarm_
+
+enum Sostoyanie_Alarm_
 {
   NO_ALARM,
   ALARM_UTECHKA_NALIV,
@@ -144,17 +146,18 @@ enum Sostoyaniya_Alarm_
   ALARM_ZASOR_NALIV,
   ALARM_ZASOR_SLIV,
 };
+byte Sostoyanie_Alarm = NO_ALARM;
 
-//=========================== АВТОНАЛИВ ===========================
 
-enum Sostoyaniya_Avtonaliv_
+enum Sostoyanie_Avtonaliv_
 {
   AVTONALIV_OFF,
   AVTONALIV_ON,
 };
+int Sostoyanie_Avtonaliv=AVTONALIV_OFF;
 
-//int avtonaliv=AVTONALIV_ON;
-int avtonaliv=AVTONALIV_OFF;
+
+
 
 //=========================== Назначенные Задержки ===========================
 
@@ -198,8 +201,8 @@ long min_ves_sliva_v_period_vremeni = 20;
 
 //=========================== ПЕРЕМЕННЫЕ ===========================
 
-byte Sostoyanie_System;
-byte ALARM_TYPE;
+
+
 bool SD_works_good = true;
 
 //=========================== для управления из ком-порта ===========================
@@ -217,6 +220,11 @@ float new_sred_wess_N_izmer = 0;
 //=========================== Вес объекта перед сливом жидкости ===========================
 
 float ves_pered_Slivom;
+
+
+//=========================== Вес последнего слива жидкости ===========================
+
+int ves_poslednego_sliva = 0;
 
 //=========================== Вес жидкости сохраненной на флешке перед сбоем эклектричества ===========================
 

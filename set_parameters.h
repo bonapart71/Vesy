@@ -91,7 +91,7 @@ void set_param(){
             
             work_setting.max_naliv=current_param[0];
             work_setting.max_sliv=current_param[1];
-            avtonaliv=current_param[2];
+            Sostoyanie_Avtonaliv=current_param[2];
 
             store_to_eeprom_long(EEPROM_MAX_NALIV, work_setting.max_naliv);
             store_to_eeprom_long(EEPROM_MAX_SLIV, work_setting.max_sliv);

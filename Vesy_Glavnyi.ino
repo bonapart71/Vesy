@@ -1,4 +1,4 @@
-  #define VERSION "Version 1.03"
+  #define VERSION "Version 1.04"
 
 //=========================== БИБЛИОТЕКИ ===========================
 
@@ -72,8 +72,8 @@
 
 //=========================== По умолчанию начальное состояние системы - Инициализация ===========================
   
-  Sostoyanie_System = INIZIALIZACIYA_DOLIV;
-  //Sostoyanie_System = NASTROYKA;
+  Sostoyanie_Systemy = INIZIALIZACIYA_DOLIV;
+  //Sostoyanie_Systemy = NASTROYKA;
 
 //=========================== Считываем настройки из EEPROM. Если в первой ячейке нет 11111, значит нужно идти в настройки и сохранить их в еепром из файла ===========================
   
@@ -83,7 +83,7 @@
     SD_Log_All_Settings();
   }
   else
-    Sostoyanie_System = NASTROYKA;
+    Sostoyanie_Systemy = NASTROYKA;
 
 //=========================== Можно установить нужный цикл следующей командой. Для первоначальных настроек ===========================
   
@@ -185,18 +185,18 @@
 
 //=========================== Состояние РАБОТА ===========================
 
-  if (Sostoyanie_System == RABOTA)
+  if (Sostoyanie_Systemy == RABOTA)
   {
     work();
   }
 
 //=========================== Состояние НАСТРОЙКА===========================
   
-  else if (Sostoyanie_System == NASTROYKA)
+  else if (Sostoyanie_Systemy == NASTROYKA)
   {
     if (setup_comleted())
     {
-      Sostoyanie_System = RABOTA;
+      Sostoyanie_Systemy = RABOTA;
       led_Naliv.off();
       led_Sliv.off();
       lcd.clear();
@@ -207,11 +207,11 @@
   
 //============================Состояние ИНИЦИАЛИЗАЦИЯ==============================================  
  
-  else if (Sostoyanie_System == INIZIALIZACIYA_DOLIV)
+  else if (Sostoyanie_Systemy == INIZIALIZACIYA_DOLIV)
   {
     if (init_comleted())
     {
-      Sostoyanie_System = RABOTA;
+      Sostoyanie_Systemy = RABOTA;
       led_Naliv.off();
       led_Sliv.off();
       lcd.clear();
@@ -219,7 +219,7 @@
 
 //=========================== Состояние ТРЕВОГА ===========================
   }
-  else if (Sostoyanie_System == ALARM)
+  else if (Sostoyanie_Systemy == ALARM)
   {
     if (timer_Proverki.timesUp())
     {

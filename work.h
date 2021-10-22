@@ -11,7 +11,7 @@ void work()
   {
     button_Menu_pressed = false;
     button_Menu_long_pressed = false;
-    Sostoyanie_System = NASTROYKA;
+    Sostoyanie_Systemy = NASTROYKA;
     SD_Log("Vhod v nastroyki", 0);
     punkt_menu_vybran = MENU_VYBOR_DEYSTVIYA;
     led_Naliv.off();
@@ -23,16 +23,18 @@ void work()
 
   //=========================== ПРОЦЕСС НАЛИВА ===========================
   
-  if (button_Naliv_pressed || avtonaliv==AVTONALIV_ON && !trebuetsy_doliv_ostatka)
+  if (button_Naliv_pressed || Sostoyanie_Avtonaliv==AVTONALIV_ON && !trebuetsy_doliv_ostatka)
   {
     // Если вес меньше чем вес "MAX-СЛИВ" и оба клапана закрыт, то можно наливать!
     if (sistema_stabilna && led_Naliv.isOn() && !valve_Sliv_open && !valve_Naliv_open)
     {
+    
       open_valve(VALVE_NALIV);
       //valve_Naliv_open = true;
       led_Naliv.blink(200);
       led_Sliv.off();
       sistema_stabilna = false;
+      ves_pered_Slivom = sred_wess_N_izmer;
       timer_Zaderzhka_Na_Uspokoenie.start(vremya_na_stabilizaciya);
       SD_Log("Klapan NALIV otkryt", sred_wess_N_izmer);
     }
@@ -47,6 +49,7 @@ void work()
     if (sistema_stabilna && led_Sliv.isOn() && valve_Naliv_open == false && valve_Sliv_open == false)
     {
       open_valve(VALVE_SLIV);
+      trebuetsy_doliv_ostatka=false;
       Sliv_Start_Time=millis();
       // Присвоить значение весу "ves_pered_Slivom" значение веса "sred_wess_N_izmer"
       if (trebuetsy_doliv_ostatka)
@@ -115,6 +118,9 @@ void work()
     store_to_eeprom_long(EEPROM_CYCLE, cycle);
     store_to_eeprom_long(EEPROM_VES_PERED_SLIVOM_PRI_SBOE, 0);
     SD_Log("Klapan SLIV zakryt", sred_wess_N_izmer);
+    
+ves_poslednego_sliva=ves_pered_Slivom-sred_wess_N_izmer;
+    
     SD_Log("Ves SLIV:",ves_pered_Slivom-sred_wess_N_izmer);
     SD_Log("Vremya SLIV:",Sliv_Time);
   }
@@ -153,12 +159,12 @@ void work()
       if (ves_proverki - sred_wess_N_izmer > work_setting.max_ves_utechki)
         {
         set_alarm(ALARM_UTECHKA_SLIV);
-        ALARM_TYPE = ALARM_UTECHKA_SLIV;
+        //Sostoyanie_Alarm = ALARM_UTECHKA_SLIV;
         }
       else if (sred_wess_N_izmer - ves_proverki > work_setting.max_ves_utechki)
         {
         set_alarm(ALARM_UTECHKA_NALIV);
-        ALARM_TYPE = ALARM_UTECHKA_NALIV;
+        //Sostoyanie_Alarm = ALARM_UTECHKA_NALIV;
         }
     }
     else
@@ -168,11 +174,11 @@ void work()
         if (valve_Sliv_open)
         {
           set_alarm(ALARM_ZASOR_SLIV);
-          ALARM_TYPE = ALARM_ZASOR_SLIV;
+          //Sostoyanie_Alarm = ALARM_ZASOR_SLIV;
         }
         else
           set_alarm(ALARM_ZASOR_NALIV);
-          ALARM_TYPE = ALARM_ZASOR_NALIV;
+          //Sostoyanie_Alarm = ALARM_ZASOR_NALIV;
       }
       else
       {

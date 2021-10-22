@@ -1,5 +1,5 @@
 
-#define NUMBER_OF_MODBUS_REGISTERS 16
+#define NUMBER_OF_MODBUS_REGISTERS 20
 #define DIRECT_PIN 4
 #define MODBUS_ADDRESS 1
 #define MODBUS_SERIAL Serial1
@@ -36,11 +36,11 @@ void Modbus_Update_Registers()
     ModbusTempTable[7] = (int)valve_Naliv_open;
     ModbusTempTable[8] = (int)valve_Sliv_open;
     
-    ModbusTempTable[9] = Sostoyanie_System;
+    ModbusTempTable[9] = Sostoyanie_Systemy;
 
-    ModbusTempTable[10] = ALARM_TYPE;
+    ModbusTempTable[10] = Sostoyanie_Alarm;
 
-    temp = round(Sliv_Time);
+    temp = Sliv_Time;
     ptr = (unsigned int *)&temp;
     ModbusTempTable[12] = *ptr++;
     ModbusTempTable[11] = *ptr;
@@ -51,6 +51,10 @@ void Modbus_Update_Registers()
     ptr = (unsigned int *)&temp;
     ModbusTempTable[14] = *ptr++;
     ModbusTempTable[13] = *ptr;
+
+ 
+    ModbusTempTable[16] = (int)ves_poslednego_sliva;
+
     
 
     noInterrupts();

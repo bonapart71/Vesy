@@ -1,8 +1,9 @@
 //=========================== Действия при тревоге ===========================
 
-  void set_alarm(byte ALARM_TYPE)
+  void set_alarm(byte type_of_alarm)
   {
   timer_Proverki.startAndRepeat(vremya_povtoreniya_soobsheniya_ob_alarme);
+  Sostoyanie_Alarm = type_of_alarm;
   led_Sliv.off();
   led_Naliv.off();
   led_Alarm.blink();
@@ -14,7 +15,7 @@
   lcd.print("ALARM!!!");
   lcd.setCursor(0, 1);
 
-  switch (ALARM_TYPE)
+  switch (type_of_alarm)
   {
   case ALARM_ZASOR_NALIV:
     lcd.print("ZASOR! NALIV!");
@@ -35,5 +36,5 @@
   }
 
   //++СДЕЛАТЬ СИРЕНУ!!!
-  Sostoyanie_System = ALARM;
+  Sostoyanie_Systemy = ALARM;
 }

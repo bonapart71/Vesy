@@ -165,7 +165,7 @@ bool setup_comleted()
         
         current_param[0]=work_setting.max_naliv;
         current_param[1]=work_setting.max_sliv;
-        current_param[2]=avtonaliv;
+        current_param[2]=Sostoyanie_Avtonaliv;
 
 
         lcd.clear();
