@@ -48,7 +48,7 @@ void Modbus_Update_Registers()
 
     
     // Наверное нужно ввести новую переменную
-    temp = round(ves_pered_Slivom-sred_wess_N_izmer);
+    temp = work_setting.max_naliv;
     ptr = (unsigned int *)&temp;
     ModbusTempTable[14] = *ptr++;
     ModbusTempTable[13] = *ptr;

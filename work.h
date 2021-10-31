@@ -34,7 +34,7 @@ void work()
       led_Naliv.blink(200);
       led_Sliv.off();
       sistema_stabilna = false;
-      ves_pered_Slivom = sred_wess_N_izmer;
+      //ves_pered_Slivom = sred_wess_N_izmer;
       timer_Zaderzhka_Na_Uspokoenie.start(vremya_na_stabilizaciya);
       SD_Log("Klapan NALIV otkryt", sred_wess_N_izmer);
     }
@@ -46,10 +46,10 @@ void work()
   if (button_Sliv_pressed || trebuetsy_doliv_ostatka)
   {
 
-    if (sistema_stabilna && led_Sliv.isOn() && valve_Naliv_open == false && valve_Sliv_open == false)
+    if (sistema_stabilna && led_Sliv.isOn() && !valve_Naliv_open && !valve_Sliv_open)
     {
       open_valve(VALVE_SLIV);
-      trebuetsy_doliv_ostatka=false;
+      
       Sliv_Start_Time=millis();
       // Присвоить значение весу "ves_pered_Slivom" значение веса "sred_wess_N_izmer"
       if (trebuetsy_doliv_ostatka)
@@ -60,6 +60,7 @@ void work()
       {
         ves_pered_Slivom = sred_wess_N_izmer;
       }
+      trebuetsy_doliv_ostatka=false;
       
       //valve_Sliv_open = true;
       led_Sliv.blink(200);
@@ -84,7 +85,7 @@ void work()
   }
   //=========================== ОСТАНОВ НАЛИВА ===========================
 
-  if (sred_wess_N_izmer > work_setting.max_naliv && valve_Naliv_open == true)
+  if (sred_wess_N_izmer > work_setting.max_naliv && valve_Naliv_open)
   {
     close_valve(VALVE_NALIV);
     //valve_Naliv_open = false;
@@ -97,7 +98,7 @@ void work()
 
   //=========================== ОСТАНОВ СЛИВ ===========================
   
-  if (sred_wess_N_izmer < ves_pered_Slivom - work_setting.max_sliv && valve_Sliv_open == true)
+  if (sred_wess_N_izmer < ves_pered_Slivom - work_setting.max_sliv && valve_Sliv_open)
   {
     close_valve(VALVE_SLIV);
 
@@ -119,9 +120,9 @@ void work()
     store_to_eeprom_long(EEPROM_VES_PERED_SLIVOM_PRI_SBOE, 0);
     SD_Log("Klapan SLIV zakryt", sred_wess_N_izmer);
     
-    ves_poslednego_sliva=ves_pered_Slivom-sred_wess_N_izmer;
+    //ves_poslednego_sliva=ves_pered_Slivom-sred_wess_N_izmer;
     
-    SD_Log("Ves SLIV:",ves_poslednego_sliva);
+    SD_Log("Ves SLIV:",work_setting.max_naliv);
     SD_Log("Vremya SLIV:",Sliv_Time);
   }
 
