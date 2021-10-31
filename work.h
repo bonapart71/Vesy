@@ -119,9 +119,9 @@ void work()
     store_to_eeprom_long(EEPROM_VES_PERED_SLIVOM_PRI_SBOE, 0);
     SD_Log("Klapan SLIV zakryt", sred_wess_N_izmer);
     
-ves_poslednego_sliva=ves_pered_Slivom-sred_wess_N_izmer;
+    ves_poslednego_sliva=ves_pered_Slivom-sred_wess_N_izmer;
     
-    SD_Log("Ves SLIV:",ves_pered_Slivom-sred_wess_N_izmer);
+    SD_Log("Ves SLIV:",ves_poslednego_sliva);
     SD_Log("Vremya SLIV:",Sliv_Time);
   }
 

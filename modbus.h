@@ -21,6 +21,7 @@ void Modbus_Update_Registers()
 
     //Long to 2 word conversion
     ptr = (unsigned int *)&cycle;
+   
     ModbusTempTable[1] = *ptr++;
     ModbusTempTable[0] = *ptr;
 
@@ -52,8 +53,11 @@ void Modbus_Update_Registers()
     ModbusTempTable[14] = *ptr++;
     ModbusTempTable[13] = *ptr;
 
- 
-    ModbusTempTable[16] = (int)ves_poslednego_sliva;
+
+    temp = ves_poslednego_sliva;
+    ptr = (unsigned int *)&temp;
+    ModbusTempTable[16] = *ptr++;
+    ModbusTempTable[15] = *ptr;
 
     
 
