@@ -48,6 +48,7 @@ void work()
 
     if (sistema_stabilna && led_Sliv.isOn() && !valve_Naliv_open && !valve_Sliv_open)
     {
+      cycle++;
       open_valve(VALVE_SLIV);
       
       Sliv_Start_Time=millis();
@@ -65,7 +66,7 @@ void work()
       //valve_Sliv_open = true;
       led_Sliv.blink(200);
       led_Naliv.off();
-      cycle++;
+      
       sistema_stabilna = false;
       timer_Zaderzhka_Na_Uspokoenie.start(vremya_na_stabilizaciya);
 
