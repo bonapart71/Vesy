@@ -53,11 +53,17 @@ void Modbus_Update_Registers()
     ModbusTempTable[14] = *ptr++;
     ModbusTempTable[13] = *ptr;
 
-
-    temp = ves_poslednego_sliva;
+    temp = work_setting.max_naliv;
     ptr = (unsigned int *)&temp;
     ModbusTempTable[16] = *ptr++;
     ModbusTempTable[15] = *ptr;
+
+    temp = ves_poslednego_sliva;
+    ptr = (unsigned int *)&temp;
+    ModbusTempTable[18] = *ptr++;
+    ModbusTempTable[17] = *ptr;
+
+    ModbusTempTable[19] = Sostoyanie_Avtonaliv;
 
     
 
