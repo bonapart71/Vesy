@@ -1,4 +1,4 @@
-  #define VERSION "Version 1.04"
+  #define VERSION "Ver 1.04-211115"
 
 //=========================== БИБЛИОТЕКИ ===========================
 
@@ -168,10 +168,23 @@
 //=========================== LOOP ===========================
   void loop()
   {
+
     
 //=========================== Обновление регистров Модбас ===========================
   
+  PRN(ModbusRegTable[25]);
+  if (ModbusRegTable[25]==1){
+      Sostoyanie_Avtonaliv=true;
+    }
+  if (ModbusRegTable[25]==0){
+      Sostoyanie_Avtonaliv=false;
+    }
+
+  
   Modbus_Update_Registers();
+
+
+  
 
 //=========================== Таймер для моргания лампочек ===========================
   led_Naliv.work(millis());

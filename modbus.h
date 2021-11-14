@@ -1,5 +1,9 @@
 
-#define NUMBER_OF_MODBUS_REGISTERS 20
+#define NUMBER_OF_MODBUS_REGISTERS 30
+
+// с какого регистра начинаются ригистры для записи
+#define INPUT_MODBUS_REGISTERS_START 20  
+
 #define DIRECT_PIN 4
 #define MODBUS_ADDRESS 1
 #define MODBUS_SERIAL Serial1
@@ -67,8 +71,12 @@ void Modbus_Update_Registers()
 
     
 
+    
+
     noInterrupts();
-    for (int i = 0; i < NUMBER_OF_MODBUS_REGISTERS; i++)
+    //for (int i = 0; i < NUMBER_OF_MODBUS_REGISTERS; i++)
+    for (int i = 0; i < INPUT_MODBUS_REGISTERS_START; i++)
+     
         ModbusRegTable[i] = ModbusTempTable[i];
     interrupts();
 }
