@@ -1,4 +1,4 @@
-  #define VERSION "Ver 1.04-211115"
+  #define VERSION "Ver 1.04-211116"
 
 //=========================== БИБЛИОТЕКИ ===========================
 
@@ -105,6 +105,7 @@
     led_Alarm.blink();
     SD_Log("Sliv prervan!", 0);
     SD_Log("Ves pered slivom pri sboe", ves_pered_Slivom_pri_sboe);
+    Sostoyanie_Alarm=ALARM_TREBUETSA_DOLIV;
   }
 
   pinMode(BUTTON_NALIV, INPUT_PULLUP);
@@ -172,7 +173,7 @@
     
 //=========================== Обновление регистров Модбас ===========================
   
-  PRN(ModbusRegTable[25]);
+  //PRN(ModbusRegTable[25]);
   if (ModbusRegTable[25]==1){
       Sostoyanie_Avtonaliv=true;
     }

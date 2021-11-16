@@ -145,6 +145,7 @@ enum Sostoyanie_Alarm_
   ALARM_UTECHKA_SLIV,
   ALARM_ZASOR_NALIV,
   ALARM_ZASOR_SLIV,
+  ALARM_TREBUETSA_DOLIV,
 };
 byte Sostoyanie_Alarm = NO_ALARM;
 

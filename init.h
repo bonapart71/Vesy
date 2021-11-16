@@ -58,6 +58,7 @@ bool init_comleted()
         button_Naliv_pressed = false;
         button_Menu_pressed = false;
         button_Menu_long_pressed = false;
+        Sostoyanie_Alarm=NO_ALARM;
         return true;
       }
 
